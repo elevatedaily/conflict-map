@@ -29,7 +29,7 @@ selected_month = st.sidebar.selectbox(
 filtered = df[(df["Year"] == selected_year) & (df["Month"] == selected_month)]
 
 # Title and subtitle for the map
-st.title("Predicted Goldstein Score Map")
+st.title("Sudan conflict Map")
 st.subheader(f"{pd.to_datetime(f'{selected_year}-{selected_month}-01').strftime('%B %Y')}")
 
 if filtered.empty:
