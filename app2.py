@@ -4,7 +4,7 @@ import folium
 import branca.colormap as cm
 from streamlit_folium import st_folium
 
-df = pd.read_csv("forecast_results.csv")
+df = pd.read_csv("forecast_results1.csv")
 
 
 # Rename columns as per your new data
@@ -35,11 +35,12 @@ st.subheader(f"{pd.to_datetime(f'{selected_year}-{selected_month}-01').strftime(
 if filtered.empty:
     st.warning("No data available.")
 else:
-    # Define the color range for the GoldsteinScore
-    vmin, vmax = filtered["GoldsteinScore"].min(), filtered["GoldsteinScore"].max()
-    vmin, vmax = (vmin - 1, vmax + 1) if vmin == vmax else (vmin, vmax)
-    colormap = cm.LinearColormap(["blue", "green", "yellow", "red"], vmin=vmin, vmax=vmax)
-    colormap.caption = "Predicted Goldstein Score"
+      # Define fixed color range for Goldstein Score
+    vmin, vmax = -10, 10
+
+    # Reverse color scale: Red (conflict) → Blue (peace)
+    colormap = cm.LinearColormap(["red", "yellow", "green", "blue"], vmin=vmin, vmax=vmax)
+    colormap.caption = "Predicted Goldstein Score (-10 = Conflict, +10 = Peace)"
 
     # Create the map centered at a specified location
     m = folium.Map(location=[15, 32], zoom_start=6)
