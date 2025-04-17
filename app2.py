@@ -36,7 +36,7 @@ if filtered.empty:
     st.warning("No data available.")
 else:
       # Define fixed color range for Goldstein Score
-    vmin, vmax = -10, 10
+    vmin, vmax = -9, 10
 
     # Reverse color scale: Red (conflict) → Blue (peace)
     colormap = cm.LinearColormap(["red", "yellow", "green", "blue"], vmin=vmin, vmax=vmax)
